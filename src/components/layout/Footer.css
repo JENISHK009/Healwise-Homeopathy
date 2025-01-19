@@ -1,0 +1,152 @@
+/* Footer.css */
+.footer {
+  background-color: var(--secondary-btn);
+  color: var(--white);
+  padding: 40px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.footer-section h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--primary-btn);
+}
+
+.footer-logo-img {
+  width: 150px;
+  margin-bottom: 15px;
+  background-color: var(--white);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.footer-contact {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: var(--white);
+  transition: color var(--transition-speed);
+}
+
+.footer-links a:hover {
+  color: var(--primary-btn-hover);
+}
+
+.footer-subscribe {
+  text-align: center; /* Center align the entire section */
+  padding: 20px;
+  color: var(--white);
+}
+
+.footer-subscribe h4 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.footer-subscribe p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.subscribe-form {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
+  justify-content: center;
+}
+
+.subscribe-input {
+  flex: 1;
+  max-width: 400px;
+  padding: 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  color: var(--text-color);
+  background-color: var(--white);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow var(--transition-speed),
+    transform var(--transition-speed);
+}
+
+.subscribe-input:focus {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02); /* Subtle scaling effect */
+}
+
+.subscribe-button {
+  background-color: var(--primary-btn);
+  color: #fff; /* White text */
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subscribe-button:hover {
+  background-color: var(--primary-btn-hover);
+  transform: scale(1.05); /* Slight hover effect */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.subscribe-button:active {
+  transform: scale(0.98); /* Subtle press effect */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .footer-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .subscribe-form {
+    flex-direction: column; /* Stack input and button vertically */
+    gap: 10px;
+  }
+
+  .subscribe-button {
+    width: 100%; /* Make button take full width */
+  }
+
+  .subscribe-input {
+    width: 100%; /* Make input take full width */
+  }
+}

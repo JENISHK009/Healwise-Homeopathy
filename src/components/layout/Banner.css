@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap");
+
+/* Main banner styling */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--background-color);
+}
+
+/* Banner slide styling */
+.banner-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-speed) ease-in-out,
+    visibility var(--transition-speed) ease-in-out;
+}
+
+/* Active banner slide */
+.banner-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Banner content styling */
+.banner-content {
+  position: absolute;
+  left: 10%;
+  color: var(--text-color);
+  z-index: 1;
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.banner-slide.active .banner-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.banner-content h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.2;
+}
+
+.banner-content p {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  margin-top: 1rem;
+  color: var(--text-color);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Button styles */
+.banner-buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.banner-btn {
+  padding: 14px 28px;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.primary-btn {
+  background-color: var(--primary-btn);
+  color: var(--white);
+  box-shadow: 0 2px 10px rgba(60, 182, 81, 0.2);
+}
+
+.primary-btn:hover {
+  background-color: var(--primary-btn-hover);
+  box-shadow: 0 4px 15px rgba(31, 131, 100, 0.3);
+}
+
+.secondary-btn {
+  background-color: var(--secondary-btn);
+  color: var(--white);
+  box-shadow: 0 2px 10px rgba(19, 79, 108, 0.2);
+}
+
+.secondary-btn:hover {
+  background-color: var(--secondary-btn-hover);
+  box-shadow: 0 4px 15px rgba(13, 53, 73, 0.3);
+}
+
+/* Image container styling */
+.banner-image-container {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: min(400px, 90vw);
+  height: min(400px, 90vw);
+  background-size: cover;
+  background-position: center;
+  border: 8px solid var(--white);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+.banner-slide.active .banner-image-container {
+  opacity: 1;
+}
+
+/* Responsive design */
+@media (max-width: 1280px) {
+  .banner-content {
+    left: 5%;
+    max-width: 50%;
+  }
+
+  .banner-image-container {
+    right: 5%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .banner-content {
+    left: 5%;
+    max-width: 60%;
+  }
+
+  .banner-image-container {
+    right: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .banner-slide {
+    padding: 2rem;
+  }
+
+  .banner-content {
+    position: relative;
+    left: 0;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .banner-buttons {
+    justify-content: center;
+  }
+
+  .banner-image-container {
+    position: relative;
+    right: 0;
+    top: 0;
+    transform: none;
+    margin: 2rem auto;
+    width: min(300px, 80vw);
+    height: min(300px, 80vw);
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-content h1 {
+    font-size: 2rem;
+  }
+
+  .banner-content p {
+    font-size: 1rem;
+  }
+
+  .banner-btn {
+    font-size: 0.9rem;
+    padding: 12px 24px;
+  }
+
+  .banner-image-container {
+    width: 80vw;
+    height: 80vw;
+    margin-bottom: 20px;
+  }
+}
