@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./Header.css";
 
 const Header = () => {
@@ -34,10 +35,11 @@ const Header = () => {
         <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
           <ul>
             <li>
-              <a href='#home'>Home</a>
+              <a href='/'>Home</a>
             </li>
             <li>
-              <a href='#about'>About</a>
+              {/* Use Link to navigate to the About Us page */}
+              <Link to='/about'>About</Link>
             </li>
             <li>
               <a href='#product'>Products</a>

@@ -9,7 +9,7 @@
   z-index: 1000;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   font-family: "Poppins", sans-serif;
-  padding: 0.5rem 2rem;
+  padding: 0.75rem 2rem;
   background-color: rgba(
     255,
     255,
@@ -23,7 +23,7 @@
 
 .header.scrolled {
   background-color: var(--white); /* Background turns white when scrolling */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .header-container {
@@ -33,7 +33,7 @@
   max-width: 1200px;
   margin: auto;
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
 }
 
 .logo img {
@@ -49,7 +49,7 @@
 }
 
 .menu ul li {
-  margin: 0 1rem;
+  margin: 0 1.5rem;
   position: relative;
 }
 
@@ -58,13 +58,38 @@
   color: var(--text-color);
   font-size: 1rem;
   font-weight: 600;
-  transition: color 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 2px; /* Add space for underline */
+  border-bottom: 2px solid transparent; /* Invisible underline initially */
 }
 
 .menu ul li a:hover {
-  color: var(--primary-btn);
-  transform: scale(1.05);
-  letter-spacing: 1px;
+  color: var(--text-color); /* Keep original color on hover */
+  transform: none; /* No scaling effect */
+  border-bottom: 2px solid var(--primary-btn); /* Add subtle underline on hover */
+}
+
+.menu ul li a:active {
+  color: var(--text-color); /* Keep the text color unchanged */
+  transform: none; /* No scaling effect on active click */
+  outline: none; /* Remove default active outline */
+}
+
+.menu ul li a:focus {
+  outline: none; /* Remove focus outline */
+  border-bottom: none; /* Remove underline when focused */
+}
+
+.menu ul li a:focus-visible {
+  border-bottom: 2px solid var(--primary-btn); /* Optional focus style for keyboard navigation */
+  background-color: rgba(0, 0, 0, 0.1); /* Optional subtle background change */
+}
+
+/* Ensuring no background color or border effects persist */
+.menu ul li a:focus:not(:focus-visible),
+.menu ul li a:active {
+  outline: none;
+  border-bottom: none;
 }
 
 .header-actions {
@@ -142,11 +167,11 @@
   }
 
   .menu ul li {
-    margin: 0.5rem 1rem;
+    margin: 0.5rem 1.5rem;
   }
 
   .menu ul li a {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .header-actions {
@@ -206,7 +231,6 @@
   }
 
   .menu ul li a:hover {
-    background-color: var(--primary-btn);
     transform: scale(1.05);
     letter-spacing: 1px;
   }
@@ -242,4 +266,9 @@
   .header-actions {
     display: none !important;
   }
+}
+
+/* Adjust body padding for the header */
+body {
+  padding-top: 70px; /* Prevents overlap with the fixed header */
 }

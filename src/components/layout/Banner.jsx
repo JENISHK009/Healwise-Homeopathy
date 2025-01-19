@@ -32,63 +32,23 @@ class Banner extends Component {
           "https://res.cloudinary.com/dcmgkwzbw/image/upload/v1737191399/oybz7snsfkl8wdm8cczy.jpg",
       },
     ];
-
-    this.touchStartX = 0;
   }
 
   componentDidMount() {
     this.startSlideshow();
-    this.addTouchListeners();
   }
 
   componentWillUnmount() {
     this.stopSlideshow();
-    this.removeTouchListeners();
   }
 
   startSlideshow = () => {
-    this.slideInterval = setInterval(this.nextSlide, 5000);
+    this.slideInterval = setInterval(this.nextSlide, 5000); // Automatically change the slide every 5 seconds
   };
 
   stopSlideshow = () => {
     if (this.slideInterval) {
       clearInterval(this.slideInterval);
-    }
-  };
-
-  addTouchListeners = () => {
-    const banner = document.querySelector(".banner");
-    banner.addEventListener("touchstart", this.handleTouchStart, {
-      passive: true,
-    });
-    banner.addEventListener("touchmove", this.handleTouchMove, {
-      passive: true,
-    });
-  };
-
-  removeTouchListeners = () => {
-    const banner = document.querySelector(".banner");
-    banner.removeEventListener("touchstart", this.handleTouchStart);
-    banner.removeEventListener("touchmove", this.handleTouchMove);
-  };
-
-  handleTouchStart = (e) => {
-    this.touchStartX = e.touches[0].clientX;
-  };
-
-  handleTouchMove = (e) => {
-    if (this.state.isAnimating) return;
-
-    const touchEndX = e.touches[0].clientX;
-    const diff = this.touchStartX - touchEndX;
-
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        this.nextSlide();
-      } else {
-        this.prevSlide();
-      }
-      this.touchStartX = 0;
     }
   };
 
@@ -103,31 +63,6 @@ class Banner extends Component {
     setTimeout(() => this.setState({ isAnimating: false }), 500);
   };
 
-  prevSlide = () => {
-    if (this.state.isAnimating) return;
-
-    this.setState((prevState) => ({
-      isAnimating: true,
-      current:
-        prevState.current === 0
-          ? this.banners.length - 1
-          : prevState.current - 1,
-    }));
-
-    setTimeout(() => this.setState({ isAnimating: false }), 500);
-  };
-
-  setCurrentSlide = (index) => {
-    if (this.state.isAnimating || index === this.state.current) return;
-
-    this.setState({
-      isAnimating: true,
-      current: index,
-    });
-
-    setTimeout(() => this.setState({ isAnimating: false }), 500);
-  };
-
   render() {
     const { current } = this.state;
 
@@ -137,8 +72,7 @@ class Banner extends Component {
           {this.banners.map((banner, index) => (
             <div
               key={banner.id}
-              className={`banner-slide ${current === index ? "active" : ""} 
-                         ${index < current ? "slide-left" : "slide-right"}`}>
+              className={`banner-slide ${current === index ? "active" : ""}`}>
               <div className='banner-container'>
                 <div className='banner-flex'>
                   <div className='banner-content'>
@@ -172,33 +106,6 @@ class Banner extends Component {
               </div>
             </div>
           ))}
-
-          <div className='banner-nav'>
-            <button
-              className='nav-btn prev-btn'
-              onClick={this.prevSlide}
-              aria-label='Previous slide'>
-              ‹
-            </button>
-            <button
-              className='nav-btn next-btn'
-              onClick={this.nextSlide}
-              aria-label='Next slide'>
-              ›
-            </button>
-          </div>
-
-          <div className='banner-indicators'>
-            {this.banners.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => this.setCurrentSlide(index)}
-                className={`indicator ${current === index ? "active" : ""}`}
-                aria-label={`Go to slide ${index + 1}`}>
-                <span className='indicator-progress'></span>
-              </button>
-            ))}
-          </div>
         </div>
       </div>
     );
