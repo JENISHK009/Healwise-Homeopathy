@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@500;700&display=swap");
 
 .header {
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +20,7 @@
     0
   ); /* Transparent background initially */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: auto;
+  height: var(--header-height);
   min-height: 70px; /* Minimum height of the header */
 }
 
@@ -28,12 +31,11 @@
 
 .header-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: center; /* Vertically center */
+  justify-content: space-between; /* Keep the items spaced */
   max-width: 1200px;
   margin: auto;
   width: 100%;
-  padding: 0.75rem 0;
 }
 
 .logo img {
@@ -270,5 +272,5 @@
 
 /* Adjust body padding for the header */
 body {
-  padding-top: 70px; /* Prevents overlap with the fixed header */
+  padding-top: var(--header-height);
 }

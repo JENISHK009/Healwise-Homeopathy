@@ -25,4 +25,5 @@ a {
   --background-color: #d8d8d8;
   --white: #ffffff;
   --transition-speed: 0.4s;
+  --header-height: 80px; /* Adjust based on your design */
 }
