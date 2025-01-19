@@ -50,6 +50,9 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 4px solid #f1f1f1; /* Add a border around the image */
+  padding: 1rem; /* Add padding inside the box */
+  background-color: #fff; /* Set a background color for the box */
 }
 
 .banner-image {
@@ -84,6 +87,7 @@
 .banner-buttons {
   display: flex;
   gap: 1rem;
+  justify-content: flex-start; /* Ensure buttons are aligned in a row */
 }
 
 .banner-btn {
@@ -161,7 +165,7 @@
   }
 
   .banner-slide {
-    position: absolute; /* Keep absolute positioning */
+    position: absolute;
     height: auto;
     min-height: calc(100vh - var(--header-height, 80px));
   }
@@ -185,6 +189,10 @@
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
+    border-radius: 10px; /* Rounded corners for the box */
+    border: 4px solid #f1f1f1; /* Soft border for the box */
+    padding: 1rem; /* Padding inside the box */
+    background-color: #fff; /* White background for the image box */
   }
 
   .banner-content {
@@ -195,6 +203,7 @@
 
   .banner-buttons {
     justify-content: center;
+    gap: 1rem;
   }
 
   .banner-title {
@@ -217,6 +226,8 @@
 
   .banner-image-wrapper {
     max-width: 100%;
+    padding: 0.5rem; /* Adjust padding for smaller screens */
+    border: 3px solid #e2e8f0; /* Slightly thinner border */
   }
 
   .banner-content {
@@ -233,13 +244,13 @@
   }
 
   .banner-btn {
-    width: 100%;
+    width: 48%; /* Set width of buttons to fit in one row */
     padding: 0.875rem 1.5rem;
   }
 
   .banner-buttons {
-    flex-direction: column;
+    flex-direction: row; /* Make buttons in a single row */
     width: 100%;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 }
