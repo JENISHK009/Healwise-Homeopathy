@@ -1,9 +1,8 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Star, CreditCard,
   Search, Filter, SlidersHorizontal,
   ShoppingCart,
-  X,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Header from "../components/layout/Header";
@@ -41,6 +40,7 @@ const products = [
     rating: 4.0,
     mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg'
   },
+  // Add more products as needed
 ];
 
 const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) => {
@@ -53,12 +53,16 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
   };
 
   const renderStars = (rating) => {
-    return [...Array(5)].map((_, index) => (
-      <Star
-        key={index}
-        className={`star ${index < Math.floor(rating) ? 'filled' : 'empty'}`}
-      />
-    ));
+    return [...Array(5)].map((_, index) => {
+      const isFilled = index < Math.floor(rating);
+      return (
+        <Star
+          key={index}
+          className={`star ${isFilled ? 'filled' : 'empty'}`}
+          style={{ color: isFilled ? '#f39c12' : '#ccc' }} // Gold for filled, light gray for empty
+        />
+      );
+    });
   };
 
   return (
@@ -118,7 +122,7 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
   );
 });
 
-const ProductPage = ({ addToCart }) => {
+ const ProductPage = ({ addToCart }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 50]);
@@ -236,8 +240,13 @@ const ProductPage = ({ addToCart }) => {
             ))
           ) : (
             <div className="no-products">
-              <X size={50} />
-              <p>No products found matching your filters</p>
+              <div className="message">
+                <h2>No Products Found</h2>
+                <p>Try searching for something else!</p>
+              </div>
+              <div className="animation-container">
+                <div className="animation"></div>
+              </div>
             </div>
           )}
         </div>
