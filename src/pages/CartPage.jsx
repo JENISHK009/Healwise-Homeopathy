@@ -62,7 +62,6 @@ const CartPage = ({ cartItems, removeFromCart, updateQuantity }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

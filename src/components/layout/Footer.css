@@ -1,10 +1,36 @@
-/* Footer.css */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root, .app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  width: 100%;
   background-color: var(--secondary-btn);
   color: var(--white);
   padding: 40px 20px;
   font-family: "Poppins", sans-serif;
 }
+
 
 .footer-container {
   display: grid;

@@ -1,11 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import {
-  Star, CreditCard,
-  Search, Filter, SlidersHorizontal,
+  Search,
+  Filter,
+  SlidersHorizontal,
+  CheckCircle,
   ShoppingCart,
+  ChevronDown,
+  X,
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import './ProductPage.css';
 
@@ -40,69 +42,70 @@ const products = [
     rating: 4.0,
     mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg'
   },
+  {
+    id: 4,
+    name: 'Digestive Health Syrup',
+    type: 'Syrup',
+    category: 'Digestive Care',
+    description: 'Natural solution for digestive system balance',
+    price: 15.99,
+    rating: 4.0,
+    mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg'
+  },
+  
+  
   // Add more products as needed
 ];
 
-const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) => {
+const ProductCard = React.forwardRef(({ product, onAddToCart }, ref) => {
   const [addedToCart, setAddedToCart] = useState(false);
 
   const handleAddToCart = () => {
     onAddToCart(product);
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000); // Reset after 2 seconds
-  };
-
-  const renderStars = (rating) => {
-    return [...Array(5)].map((_, index) => {
-      const isFilled = index < Math.floor(rating);
-      return (
-        <Star
-          key={index}
-          className={`star ${isFilled ? 'filled' : 'empty'}`}
-          style={{ color: isFilled ? '#f39c12' : '#ccc' }} // Gold for filled, light gray for empty
-        />
-      );
-    });
+    setTimeout(() => setAddedToCart(false), 2000);
   };
 
   return (
-    <div className="product-card">
-  <div className="product-image-container">
-    <img src={product.mainImage} alt={product.name} className="product-image" />
-  </div>
-  <div className="product-details">
-    <h3 className="product-name">{product.name}</h3>
-    <div className="product-meta">
-      <span className="product-type">{product.type}</span>
-      <span className="product-category">{product.category}</span>
+    <div className="product-card" ref={ref}>
+      <div className="product-image-container">
+        <img src={product.mainImage} alt={product.name} className="product-image" />
+      </div>
+      <div className="product-details">
+        <h3 className="product-name">
+          {product.name}
+          <span className="rating-number"> ★ {product.rating}</span>
+        </h3>
+        <div className="product-price">&#8377;{product.price.toFixed(2)}</div>
+        <div className="product-meta">
+          <span className="product-type">{product.type}</span>
+          <span className="product-category">{product.category}</span>
+        </div>
+        <p className="product-description">{product.description}</p>
+      </div>
+      <button className="add-to-cart-btn" onClick={handleAddToCart}>
+        {addedToCart ? (
+          <span className="checkmark-icon">
+            <CheckCircle className="checkmark-animation" />
+          </span>
+        ) : (
+          <ShoppingCart />
+        )}
+      </button>
     </div>
-    <div className="product-rating">
-      {renderStars(product.rating)}
-      <span className="rating-number">({product.rating})</span>
-    </div>
-    <p className="product-description">{product.description}</p>
-    <div className="product-footer">
-      <div className="product-price">&#8377;{product.price.toFixed(2)}</div>
-    </div>
-  </div>
-  <div className="product-overlay">
-    <button className="add-to-cart-btn" onClick={handleAddToCart}>
-      {addedToCart ? <span className="checkmark">✔️</span> : <ShoppingCart />}
-      {addedToCart ? ' Added' : ' Add to Cart'}
-    </button>
-    <button className="buy-now-btn" onClick={() => onBuyNow(product)}>
-      <CreditCard /> Buy Now
-    </button>
-  </div>
-</div>
   );
 });
 
- const ProductPage = ({ addToCart }) => {
+const ProductPage = ({ addToCart }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 50]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+  // Get unique types and categories
+  const uniqueTypes = [...new Set(products.map(p => p.type))];
+  const uniqueCategories = [...new Set(products.map(p => p.category))];
 
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
@@ -131,10 +134,18 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
     );
   };
 
+  const resetFilters = () => {
+    setSearchTerm('');
+    setSelectedTypes([]);
+    setSelectedCategories([]);
+    setPriceRange([0, 50]);
+  };
+
   return (
     <div className="product-page-wrapper">
       <div className="advanced-product-page">
-        <div className="product-filters">
+        {/* Desktop Filters */}
+        <div className="product-filters desktop-filters">
           <div className="search-container">
             <Search className="search-icon" />
             <input
@@ -151,14 +162,14 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
               <Filter /> Product Types
             </div>
             <div className="filter-options">
-              {products.map(product => (
-                <label key={product.type} className="checkbox-container">
+              {uniqueTypes.map(type => (
+                <label key={type} className="checkbox-container">
                   <input
                     type="checkbox"
-                    checked={selectedTypes.includes(product.type)}
-                    onChange={() => toggleType(product.type)}
+                    checked={selectedTypes.includes(type)}
+                    onChange={() => toggleType(type)}
                   />
-                  {product.type}
+                  {type}
                 </label>
               ))}
             </div>
@@ -189,19 +200,131 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
               <Filter /> Categories
             </div>
             <div className="filter-options">
-              {products.map(product => (
-                <label key={product.category} className="checkbox-container">
+              {uniqueCategories.map(category => (
+                <label key={category} className="checkbox-container">
                   <input
                     type="checkbox"
-                    checked={selectedCategories.includes(product.category)}
-                    onChange={() => toggleCategory(product.category)}
+                    checked={selectedCategories.includes(category)}
+                    onChange={() => toggleCategory(category)}
                   />
-                  {product.category}
+                  {category}
                 </label>
               ))}
             </div>
           </div>
         </div>
+
+        {/* Mobile Filter Toggle */}
+        <button 
+          className="mobile-filter-toggle-btn"
+          onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+        >
+          <Filter />
+        </button>
+
+        {/* Mobile Filters */}
+        {isMobileFilterOpen && (
+          <div className="mobile-filter-container">
+            <div className="mobile-filter-header">
+              <h2>Filter Products</h2>
+              <button 
+                className="mobile-filter-close"
+                onClick={() => setIsMobileFilterOpen(false)}
+              >
+                <X />
+              </button>
+            </div>
+
+            <div className="mobile-filter-section">
+              <div className="mobile-filter-section-title">
+                <Search /> Search
+              </div>
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="mobile-search-input"
+                />
+              </div>
+            </div>
+
+            <div className="mobile-filter-section">
+              <div className="mobile-filter-section-title">
+                <Filter /> Product Types
+              </div>
+              <div className="mobile-filter-options">
+                {uniqueTypes.map(type => (
+                  <div key={type} className="mobile-filter-checkbox">
+                    <input
+                      type="checkbox"
+                      id={`mobile-type-${type}`}
+                      checked={selectedTypes.includes(type)}
+                      onChange={() => toggleType(type)}
+                    />
+                    <label htmlFor={`mobile-type-${type}`}>{type}</label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mobile-filter-section">
+              <div className="mobile-filter-section-title">
+                <SlidersHorizontal /> Price Range
+              </div>
+              <div className="mobile-range-filter">
+                <input
+                  type="range"
+                  min="0"
+                  max="50"
+                  step="1"
+                  value={priceRange[1]}
+                  onChange={(e) => setPriceRange([0, Number(e.target.value)])}
+                  className="mobile-range-slider"
+                />
+                <div className="mobile-range-labels">
+                  <span>&#8377;{priceRange[0]}</span>
+                  <span>&#8377;{priceRange[1]}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mobile-filter-section">
+              <div className="mobile-filter-section-title">
+                <Filter /> Categories
+              </div>
+              <div className="mobile-filter-options">
+                {uniqueCategories.map(category => (
+                  <div key={category} className="mobile-filter-checkbox">
+                    <input
+                      type="checkbox"
+                      id={`mobile-category-${category}`}
+                      checked={selectedCategories.includes(category)}
+                      onChange={() => toggleCategory(category)}
+                    />
+                    <label htmlFor={`mobile-category-${category}`}>{category}</label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mobile-filter-actions">
+              <button 
+                className="mobile-filter-button mobile-filter-reset"
+                onClick={resetFilters}
+              >
+                Reset
+              </button>
+              <button 
+                className="mobile-filter-button mobile-filter-apply"
+                onClick={() => setIsMobileFilterOpen(false)}
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="product-list">
           {filteredProducts.length > 0 ? (
@@ -210,7 +333,6 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
                 key={product.id}
                 product={product}
                 onAddToCart={addToCart}
-                onBuyNow={() => console.log('Buying:', product)}
               />
             ))
           ) : (
@@ -219,14 +341,10 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
                 <h2>No Products Found</h2>
                 <p>Try searching for something else!</p>
               </div>
-              <div className="animation-container">
-                <div className="animation"></div>
-              </div>
             </div>
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

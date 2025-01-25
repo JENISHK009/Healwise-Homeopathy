@@ -104,8 +104,6 @@ const AboutPage = () => {
         </section>
       </main>
 
-      {/* Footer Section */}
-      <Footer />
     </div>
   );
 };
