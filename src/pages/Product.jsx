@@ -83,6 +83,23 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
             {product.name.charAt(0).toUpperCase()}
           </div>
         )}
+        
+      </div>
+      <div className="product-details">
+        <h3 className="product-name">{product.name}</h3>
+        <div className="product-meta">
+          <span className="product-type">{product.type}</span>
+          <span className="product-category">{product.category}</span>
+        </div>
+        <div className="product-rating">
+          {renderStars(product.rating)}
+          <span className="rating-number">({product.rating})</span>
+        </div>
+        <p className="product-description">{product.description}</p>
+        <div className="product-footer">
+          <div className="product-price">&#8377;{product.price.toFixed(2)}</div>
+        </div>
+
         <div className="product-overlay">
           <button
             className="add-to-cart-btn"
@@ -101,21 +118,6 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
           >
             <CreditCard /> Buy Now
           </button>
-        </div>
-      </div>
-      <div className="product-details">
-        <h3 className="product-name">{product.name}</h3>
-        <div className="product-meta">
-          <span className="product-type">{product.type}</span>
-          <span className="product-category">{product.category}</span>
-        </div>
-        <div className="product-rating">
-          {renderStars(product.rating)}
-          <span className="rating-number">({product.rating})</span>
-        </div>
-        <p className="product-description">{product.description}</p>
-        <div className="product-footer">
-          <div className="product-price">&#8377;{product.price.toFixed(2)}</div>
         </div>
       </div>
     </div>
