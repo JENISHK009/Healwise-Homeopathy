@@ -173,21 +173,21 @@
 
 .product-card {
   flex: 0 0 calc(33% - 1rem); /* Each card takes up 50% of the row minus some space for margin */
-  margin: 10px 0px;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: space-between; /* Space out children */
+  height: 100%; /* Ensure the card takes full height */
   background: var(--white);
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: transform var(--transition-speed), box-shadow var(--transition-speed);
   position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 .product-image-container {
@@ -197,13 +197,13 @@
 
 .product-image {
   width: 100%;
-  height: 250px;
+  height: 200px; /* Adjust height for better aspect ratio */
   object-fit: cover;
   transition: transform var(--transition-speed);
 }
 
 .product-image-container:hover .product-image {
-  transform: scale(1.1);
+  transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 .product-image-placeholder {
@@ -218,16 +218,11 @@
 }
 
 .product-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
+  gap : 5px;
   justify-content: space-between; /* Space buttons evenly */
-  padding: 10px; /* Add padding for better touch targets */
-  opacity: 0;
-  transition: opacity var(--transition-speed);
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better visibility */
+  padding: var(--mobile-spacing-small);
+  border-top: 1px solid var(--white); /* Light border for separation */
 }
 
 /* Show overlay on hover */
@@ -238,7 +233,7 @@
 
 .add-to-cart-btn,
 .buy-now-btn {
-  padding: 5px 5px; /* Slightly larger padding for better touch targets */
+  padding: 10px 15px; /* Slightly larger padding for better touch targets */
   border: none;
   border-radius: var(--border-radius);
   display: flex;
@@ -249,7 +244,7 @@
   transition: background-color var(--transition-speed), transform var(--transition-speed);
   color: var(--white);
   font-size: 1rem; /* Increased font size for better readability */
-  font-weight: 400; /* Slightly bolder text */
+  font-weight: 600; /* Slightly bolder text */
   flex: 1; /* Allow buttons to grow and fill space */
 }
 
@@ -277,8 +272,11 @@
 }
 
 .product-details {
-  padding: 1rem;
-  flex-grow: 1;
+  padding: var(--mobile-spacing-medium);
+  flex-grow: 1; /* Allow details to take available space */
+  display: flex;
+  flex-direction: column; /* Stack details vertically */
+  justify-content: space-between; /* Space out details */
 }
 
 .product-name {
@@ -289,12 +287,13 @@
   text-align: center;
 }
 
+
 .product-meta {
   display: flex;
   justify-content: center; /* Center the items */
   gap: 0.5rem; /* Small space between items */
   font-family: var(--font-family-meta);
-  font-size: 0.9rem; /* Standard size for meta */
+  font-size: var(--font-size-meta); /* Standard size for meta */
   color: var(--font-color-meta);
 }
 
@@ -477,11 +476,11 @@
   }
 
   .product-name {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Adjust font size for mobile */
   }
 
   .product-price {
-    font-size: 1.2rem; /* Reduced size for mobile */
+    font-size: 1rem; /* Adjust font size for mobile */
   }
 
   .product-meta {
@@ -499,7 +498,12 @@
   }
 
   .product-description {
-    font-size: small;
+    font-size: 0.9rem; /* Adjust description font size for mobile */
+  }
+
+  .add-to-cart-btn,
+  .buy-now-btn {
+    font-size: 0.9rem; /* Adjust button font size for mobile */
   }
 
   .product-filters {
@@ -565,7 +569,6 @@
     padding: var(--mobile-spacing-small);
     flex-direction: column; /* Stack buttons vertically */
     align-items: center; /* Center buttons */
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7)); /* Darker overlay for better visibility */
   }
 
   .product-card {
@@ -678,7 +681,6 @@
 
   .product-description {
     font-size: var(--mobile-font-size-small);
-    text-align: center;
     margin-bottom: var(--mobile-spacing-small);
   }
 

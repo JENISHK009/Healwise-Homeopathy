@@ -67,60 +67,34 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
 
   return (
     <div className="product-card">
-      <div className="product-image-container">
-        {product.mainImage ? (
-          <img
-            src={product.mainImage}
-            alt={product.name}
-            className="product-image"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = '/placeholder-image.png';
-            }}
-          />
-        ) : (
-          <div className="product-image-placeholder">
-            {product.name.charAt(0).toUpperCase()}
-          </div>
-        )}
-        
-      </div>
-      <div className="product-details">
-        <h3 className="product-name">{product.name}</h3>
-        <div className="product-meta">
-          <span className="product-type">{product.type}</span>
-          <span className="product-category">{product.category}</span>
-        </div>
-        <div className="product-rating">
-          {renderStars(product.rating)}
-          <span className="rating-number">({product.rating})</span>
-        </div>
-        <p className="product-description">{product.description}</p>
-        <div className="product-footer">
-          <div className="product-price">&#8377;{product.price.toFixed(2)}</div>
-        </div>
-
-        <div className="product-overlay">
-          <button
-            className="add-to-cart-btn"
-            onClick={handleAddToCart}
-          >
-            {addedToCart ? (
-              <span className="checkmark">✔️</span> // Checkmark icon
-            ) : (
-              <ShoppingCart />
-            )}
-            {addedToCart ? ' Added' : ' Add to Cart'}
-          </button>
-          <button
-            className="buy-now-btn"
-            onClick={() => onBuyNow(product)}
-          >
-            <CreditCard /> Buy Now
-          </button>
-        </div>
-      </div>
+  <div className="product-image-container">
+    <img src={product.mainImage} alt={product.name} className="product-image" />
+  </div>
+  <div className="product-details">
+    <h3 className="product-name">{product.name}</h3>
+    <div className="product-meta">
+      <span className="product-type">{product.type}</span>
+      <span className="product-category">{product.category}</span>
     </div>
+    <div className="product-rating">
+      {renderStars(product.rating)}
+      <span className="rating-number">({product.rating})</span>
+    </div>
+    <p className="product-description">{product.description}</p>
+    <div className="product-footer">
+      <div className="product-price">&#8377;{product.price.toFixed(2)}</div>
+    </div>
+  </div>
+  <div className="product-overlay">
+    <button className="add-to-cart-btn" onClick={handleAddToCart}>
+      {addedToCart ? <span className="checkmark">✔️</span> : <ShoppingCart />}
+      {addedToCart ? ' Added' : ' Add to Cart'}
+    </button>
+    <button className="buy-now-btn" onClick={() => onBuyNow(product)}>
+      <CreditCard /> Buy Now
+    </button>
+  </div>
+</div>
   );
 });
 
