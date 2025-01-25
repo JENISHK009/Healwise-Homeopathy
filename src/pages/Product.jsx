@@ -133,7 +133,6 @@ const ProductCard = React.forwardRef(({ product, onAddToCart, onBuyNow }, ref) =
 
   return (
     <div className="product-page-wrapper">
-      <Header />
       <div className="advanced-product-page">
         <div className="product-filters">
           <div className="search-container">

@@ -6,7 +6,6 @@ import Footer from "../components/layout/Footer";
 const HomePage = () => {
   return (
     <div>
-      <Header />
       <Banner />
       <Footer />
     </div>

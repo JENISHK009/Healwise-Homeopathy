@@ -24,24 +24,24 @@
   transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
   font-family: "Poppins", sans-serif;
   padding: 0.75rem 2rem;
-  background-color: rgba(255, 255, 255, 0); /* Transparent background initially */
+  background-color: white; /* Transparent background initially */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: var(--header-height);
   min-height: 70px; /* Minimum height of the header */
 }
 
-.header.scrolled {
-  background-color: var(--white); /* Background turns white when scrolling */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
 .header-container {
   display: flex;
-  align-items: center; /* Vertically center */
-  justify-content: space-between; /* Keep the items spaced */
+  align-items: center;
+  justify-content: space-between;
   max-width: 1200px;
   margin: auto;
   width: 100%;
+  padding: 0 20px; /* Add padding for better spacing */
+}
+
+.menu {
+  display: flex; /* Show menu by default on larger screens */
 }
 
 .logo img {
@@ -109,28 +109,28 @@
 .cart-icon-container {
   position: relative;
   cursor: pointer;
-  display: flex; /* Ensure it is displayed */
-  margin-right: 10px; /* Space between cart icon and menu button */
+  display: flex;
+  margin-left: 20px; /* Space between cart and menu icon */
 }
 
 .cart-icon-container svg {
-  width: 24px; /* Adjust size for better visibility */
-  height: 24px; /* Adjust size for better visibility */
-  color: var(--text-color); /* Ensure the color is set */
+  width: 24px;
+  height: 24px;
+  color: var(--text-color);
 }
+
 
 .cart-count {
   position: absolute;
-  top: -5px; /* Adjust this value to position the count above the icon */
-  right: -10px; /* Adjust this value to position the count above the icon */
-  background-color: var(--primary-btn); /* Background color for the count */
-  color: var(--white); /* Text color for the count */
+  top: -8px; /* Position the count above the icon */
+  right: -10px; /* Position the count above the icon */
+  background-color: var(--primary-btn);
+  color: var(--white);
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 10px; /* Smaller font size for the count */
   font-weight: bold;
-  z-index: 1001; /* Ensure it is above other elements */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .menu-btn {
@@ -179,7 +179,7 @@
   
   .menu.open {
     display: flex; /* Show menu when open */
-    right: 0; /* Slide in from the right */
+    left: 0; /* Slide in from the right */
     flex-direction: column; /* Stack items vertically */
     justify-content: flex-start; /* Align items to the top */
     align-items: center; /* Center items horizontally */
@@ -244,6 +244,38 @@
 }
 
 @media (max-width: 768px) {
+  .close-btn {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .menu {
+    display: none; /* Hide menu by default on smaller screens */
+    position: fixed; /* Position it fixed */
+    top: 0; /* Align to the top */
+    right: -280px; /* Start off-screen to the right */
+    width: 280px; /* Width of the menu */
+    height: 100vh; /* Full height */
+    background-color: var(--secondary-btn); /* Background color */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow for the menu */
+    transition: right var(--transition-speed) ease; /* Smooth transition for sliding in */
+  }
+
+  .menu.open {
+    display: flex; /* Show menu when open */
+    right: 0; /* Slide in from the right */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center; /* Center items horizontally */
+  }
+  
   .header-container {
     flex-direction: row; /* Change to row for mobile layout */
     justify-content: space-between; /* Space items evenly */
@@ -261,12 +293,38 @@
   }
 
   .menu-btn {
-    order: 3; /* Menu button last */
     display: flex; /* Show menu button on small screens */
+    background: none; /* Remove default button background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Change cursor to pointer */
+  }
+
+  .menu ul {
+    flex-direction: column; /* Stack menu items vertically */
+    padding: 1rem; /* Add padding around menu */
+    width: 100%; /* Full width for menu */
   }
 
   .menu ul li {
-    margin: 0.5rem 0; /* Space between menu items */
+    margin: 1rem 0; /* Space between menu items */
+    width: 100%; /* Full width for menu items */
+  }
+
+  .menu ul li a {
+    color: var(--white);
+    text-align: center; /* Center text */
+    padding: 10px 0; /* Add padding for better touch targets */
+    border-radius: 4px; /* Rounded corners for menu items */
+    transition: background-color var(--transition-speed) ease; /* Smooth background transition */
+  }
+
+  .menu ul li a:hover {
+    background-color: var(--primary-btn-hover); /* Change background on hover */
+    color: var(--white); /* Keep text color on hover */
+  }
+
+  .close-icon {
+    display: block;
   }
 }
 

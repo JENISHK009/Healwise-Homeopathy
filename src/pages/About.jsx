@@ -6,9 +6,6 @@ import "./AboutPage.css";
 const AboutPage = () => {
   return (
     <div className='root-container'>
-      {/* Header Section */}
-      <Header />
-
       {/* Main Content Section */}
       <main className='about-page'>
         <section className='about-us'>
