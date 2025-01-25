@@ -65,7 +65,7 @@
   text-decoration: none;
   color: var(--text-color);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   transition: color var(--transition-speed) ease, transform var(--transition-speed) ease, border-bottom var(--transition-speed) ease;
   padding-bottom: 2px; /* Add space for underline */
   border-bottom: 2px solid transparent; /* Invisible underline initially */
