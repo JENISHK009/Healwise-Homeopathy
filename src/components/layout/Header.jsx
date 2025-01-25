@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { ShoppingCart } from 'lucide-react'; // Import ShoppingCart icon
+import { FaBars, FaTimes } from 'react-icons/fa'; // Import the hamburger and close icons
+
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ cartItems }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Calculate total items in cart
+  const totalItemsInCart = cartItems && cartItems.reduce((total, item) => total + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,22 +33,26 @@ const Header = () => {
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className='header-container'>
         <div className='logo'>
-          <img
-            src='https://res.cloudinary.com/dcmgkwzbw/image/upload/v1737256624/Healwise%20homoepathu/urldzhxapvnmsbdndexd.png'
-            alt='Clinic Logo'
-          />
+          <Link to='/'> {/* Wrap the logo in a Link component */}
+            <img
+              src='https://res.cloudinary.com/dcmgkwzbw/image/upload/v1737256624/Healwise%20homoepathu/urldzhxapvnmsbdndexd.png'
+              alt='Clinic Logo'
+            />
+          </Link>
         </div>
         <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
+          <button className='close-btn' onClick={toggleMenu}>
+            <FaTimes className='close-icon' /> {/* Close icon */}
+          </button>
           <ul>
             <li>
-              <a href='/'>Home</a>
+              <Link to='/'>Home</Link> {/* Use Link for navigation */}
             </li>
             <li>
-              {/* Use Link to navigate to the About Us page */}
               <Link to='/about'>About</Link>
             </li>
             <li>
-              <a href='#product'>Products</a>
+              <Link to='/product'>Products</Link>
             </li>
             <li>
               <a href='#blog'>Blog</a>
@@ -52,14 +62,14 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <div className='header-actions'>
-          <button className='banner-btn primary-btn'>Book Appointment</button>
-          <button className='banner-btn secondary-btn'>Buy Now</button>
+        <div className='cart-icon-container' onClick={() => window.location.href = '/cart'}>
+          <ShoppingCart />
+          {totalItemsInCart > 0 && (
+            <span className='cart-count'>{totalItemsInCart}</span>
+          )}
         </div>
-        <button
-          className='menu-btn'
-          onClick={toggleMenu}>
-          <span className='menu-icon'></span>
+        <button className='menu-btn' onClick={toggleMenu}>
+          <FaBars className='menu-icon' /> {/* Use the imported icon */}
         </button>
       </div>
     </header>
