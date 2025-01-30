@@ -52,8 +52,8 @@ const products = [
     rating: 4.0,
     mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg'
   },
-  
-  
+
+
   // Add more products as needed
 ];
 
@@ -74,12 +74,23 @@ const ProductCard = React.forwardRef(({ product, onAddToCart }, ref) => {
       <div className="product-details">
         <h3 className="product-name">
           {product.name}
-          <span className="rating-number"> ★ {product.rating}</span>
-        </h3>
+          <span class="rating-number">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            {product.rating}
+          </span>        </h3>
         <div className="product-price">&#8377;{product.price.toFixed(2)}</div>
         <div className="product-meta">
-          <span className="product-type">{product.type}</span>
-          <span className="product-category">{product.category}</span>
+
+          <div class="product-label-container">
+            <span class="product-type-label label-fade-in">
+              <span class="product-type">{product.type}</span>
+            </span>
+            <span class="product-category-label label-fade-in">
+              <span class="product-category">{product.category}</span>
+            </span>
+          </div>
         </div>
         <p className="product-description">{product.description}</p>
       </div>
@@ -215,7 +226,7 @@ const ProductPage = ({ addToCart }) => {
         </div>
 
         {/* Mobile Filter Toggle */}
-        <button 
+        <button
           className="mobile-filter-toggle-btn"
           onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
         >
@@ -227,7 +238,7 @@ const ProductPage = ({ addToCart }) => {
           <div className="mobile-filter-container">
             <div className="mobile-filter-header">
               <h2>Filter Products</h2>
-              <button 
+              <button
                 className="mobile-filter-close"
                 onClick={() => setIsMobileFilterOpen(false)}
               >
@@ -310,13 +321,13 @@ const ProductPage = ({ addToCart }) => {
             </div>
 
             <div className="mobile-filter-actions">
-              <button 
+              <button
                 className="mobile-filter-button mobile-filter-reset"
                 onClick={resetFilters}
               >
                 Reset
               </button>
-              <button 
+              <button
                 className="mobile-filter-button mobile-filter-apply"
                 onClick={() => setIsMobileFilterOpen(false)}
               >
