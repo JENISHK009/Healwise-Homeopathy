@@ -18,7 +18,7 @@
   --font-size-title: 1.5rem;
   --font-size-meta: 0.75rem;
   --font-size-price: 1.5rem;
-  --mobile-font-size-small: 0.8rem;
+  --mobile-font-size-small: 0.7rem;
   --mobile-font-size-medium: 1rem;
   --mobile-font-size-large: 1.2rem;
   --mobile-spacing-small: 5px;
@@ -29,7 +29,6 @@
 .product-page-wrapper {
   font-family: var(--font-family-meta);
   background-color: var(--background-color);
-  padding: 1rem;
 }
 
 .advanced-product-page {
