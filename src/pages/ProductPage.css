@@ -19,7 +19,7 @@
   --font-size-meta: 0.75rem;
   --font-size-price: 1.5rem;
   --mobile-font-size-small: 0.7rem;
-  --mobile-font-size-medium: 1rem;
+  --mobile-font-size-medium: 0.9rem;
   --mobile-font-size-large: 1.2rem;
   --mobile-spacing-small: 5px;
   --mobile-spacing-medium: 10px;
@@ -931,8 +931,8 @@
   }
 
   .product-description {
-    font-size: 0.8rem; /* Smaller font size for tablets */
-    padding: 0.5rem; /* Smaller padding for tablets */
+    font-size: 0.7rem; /* Smaller font size for tablets */
+    padding: 0.3rem; /* Smaller padding for tablets */
   }
 
 
@@ -1047,7 +1047,6 @@
 
   .product-name {
     font-size: var(--mobile-font-size-medium);
-    text-align: center;
     margin-bottom: var(--mobile-spacing-small);
   }
 
