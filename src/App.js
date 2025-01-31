@@ -5,6 +5,7 @@ import HomePage from './pages/Home'; // Your Home page
 import AboutPage from './pages/About'; // Your About page
 import ProductPage from './pages/Product'; // Your Product page
 import CartPage from './pages/CartPage'; // Your Cart page
+import CheckoutPage from './pages/CheckOutPage'; // Your Cart page
 import Header from './components/layout/Header'; // Import Header
 import Footer from './components/layout/Footer'; // Import Header
 
@@ -58,8 +59,9 @@ function App() {
           <Route path="/about" element={<AboutPage />} /> {/* About Us page */}
           <Route path="/product" element={<ProductPage addToCart={addToCart} />} /> {/* Product page */}
           <Route path="/cart" element={<CartPage cartItems={cartItems} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />} /> {/* Cart page */}
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </div>
     </Router>
   );
