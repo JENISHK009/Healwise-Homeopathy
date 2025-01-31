@@ -3,10 +3,17 @@ import { ShoppingCart, X } from 'lucide-react';
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import './CartPage.css';
+import { useNavigate } from "react-router-dom";
 
 const CartPage = ({ cartItems, removeFromCart, updateQuantity }) => {
+
+  const navigate = useNavigate();
+
   const totalPrice = cartItems.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2);
 
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
   return (
     <div className="cart-page">
       <Header cartItems={cartItems} />
@@ -69,7 +76,9 @@ const CartPage = ({ cartItems, removeFromCart, updateQuantity }) => {
                 <span>Total Price</span>
                 <span>&#8377;{totalPrice}</span>
               </div>
-              <button className="checkout-btn">Proceed to Checkout</button>
+              <button className="checkout-btn" onClick={handleCheckout}>
+                Proceed to Checkout
+              </button>              
               <a href="/product" className="back-to-shop">
                 <span>Continue Shopping</span>
               </a>
