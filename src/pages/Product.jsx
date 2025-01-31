@@ -5,7 +5,6 @@ import {
   SlidersHorizontal,
   CheckCircle,
   ShoppingCart,
-  ChevronDown,
   X,
 } from 'lucide-react';
 import Footer from "../components/layout/Footer";
@@ -52,9 +51,6 @@ const products = [
     rating: 4.0,
     mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg'
   },
-
-
-  // Add more products as needed
 ];
 
 const ProductCard = React.forwardRef(({ product, onAddToCart }, ref) => {
@@ -74,21 +70,21 @@ const ProductCard = React.forwardRef(({ product, onAddToCart }, ref) => {
       <div className="product-details">
         <h3 className="product-name">
           {product.name}
-          <span class="rating-number">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star">
+          <span className="rating-number">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-star">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
             {product.rating}
-          </span>        </h3>
+          </span>
+        </h3>
         <div className="product-price">&#8377;{product.price.toFixed(2)}</div>
         <div className="product-meta">
-
-          <div class="product-label-container">
-            <span class="product-type-label label-fade-in">
-              <span class="product-type">{product.type}</span>
+          <div className="product-label-container">
+            <span className="product-type-label label-fade-in">
+              <span className="product-type">{product.type}</span>
             </span>
-            <span class="product-category-label label-fade-in">
-              <span class="product-category">{product.category}</span>
+            <span className="product-category-label label-fade-in">
+              <span className="product-category">{product.category}</span>
             </span>
           </div>
         </div>
@@ -225,14 +221,24 @@ const ProductPage = ({ addToCart }) => {
           </div>
         </div>
 
-        {/* Mobile Filter Toggle */}
-        <button
-          className="mobile-filter-toggle-btn"
-          onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
-        >
-          <Filter />
-        </button>
+        <div className='mobile-nav-bar'>
+          <button
+            className="mobile-filter-toggle-btn"
+            onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+          >
+            <Filter />
+          </button>
+          <div className="mobile-search-container">
+            <Search className="search-icon" />
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
 
+        </div>
         {/* Mobile Filters */}
         {isMobileFilterOpen && (
           <div className="mobile-filter-container">
@@ -244,21 +250,6 @@ const ProductPage = ({ addToCart }) => {
               >
                 <X />
               </button>
-            </div>
-
-            <div className="mobile-filter-section">
-              <div className="mobile-filter-section-title">
-                <Search /> Search
-              </div>
-              <div className="search-container">
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="mobile-search-input"
-                />
-              </div>
             </div>
 
             <div className="mobile-filter-section">
