@@ -33,7 +33,7 @@ const Header = ({ cartItems }) => {
           <ul>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/about'>About</Link></li>
-            <li><Link to='/product'>Products</Link></li>
+            <li><Link to='/products'>Products</Link></li>
             <li><a href='#blog'>Blog</a></li>
             <li><a href='#contact'>Contact Us</a></li>
           </ul>

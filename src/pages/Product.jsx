@@ -8,6 +8,7 @@ import {
   X,
 } from 'lucide-react';
 import './ProductPage.css';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const products = [
   {
@@ -15,45 +16,144 @@ const products = [
     name: 'Immunity Booster Drops',
     type: 'Drops',
     category: 'Immune Support',
-    description: 'Natural herbal formula to enhance immune system',
+    shortDescription: 'A natural herbal formula to enhance your immune system.',
+    description: `
+      <h2>Immunity Booster Drops</h2>
+      <p>Our <strong>Immunity Booster Drops</strong> are a natural herbal formula designed to enhance your immune system. This powerful blend is crafted from the finest ingredients to support your overall health.</p>
+      <h3>Key Benefits:</h3>
+      <ul>
+        <li>Boosts immune system function</li>
+        <li>Supports overall health and wellness</li>
+        <li>Made from natural ingredients</li>
+        <li>Easy to use drops</li>
+      </ul>
+      <h3>How to Use:</h3>
+      <p>Take <strong>10 drops</strong> daily, preferably in the morning. Mix with water or juice for best results.</p>
+      <h3>Ingredients:</h3>
+      <p>Herbal extracts, vitamins, and minerals.</p>
+      <h3>Note:</h3>
+      <p>Consult your healthcare provider before use if you are pregnant, nursing, or have a medical condition.</p>
+    `,
     price: 24.99,
     rating: 4.5,
-    mainImage: 'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png'
+    mainImage: 'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+    images: [
+      'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+      'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+    ]
   },
   {
     id: 2,
     name: 'Stress Relief Tablets',
     type: 'Tablets',
     category: 'Mental Health',
-    description: 'Homeopathic remedy for managing daily stress',
+    shortDescription: 'Homeopathic remedy for managing daily stress.',
+    description: `
+      <h2>Stress Relief Tablets</h2>
+      <p>Our <strong>Stress Relief Tablets</strong> are a homeopathic remedy formulated to help manage daily stress and promote relaxation.</p>
+      <h3>Key Benefits:</h3>
+      <ul>
+        <li>Helps reduce stress and anxiety</li>
+        <li>Promotes a sense of calm</li>
+        <li>Supports mental clarity</li>
+        <li>Non-drowsy formula</li>
+      </ul>
+      <h3>How to Use:</h3>
+      <p>Take <strong>1-2 tablets</strong> as needed, preferably with water.</p>
+      <h3>Ingredients:</h3>
+      <p>Homeopathic ingredients including <em>Chamomilla</em> and <em>Passiflora</em>.</p>
+      <h3>Note:</h3>
+      <p>Consult your healthcare provider if symptoms persist.</p>
+    `,
     price: 19.99,
     rating: 4.2,
-    mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg'
+    mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+    images: [
+      'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+      'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+    ]
   },
   {
     id: 3,
     name: 'Digestive Health Syrup',
     type: 'Syrup',
     category: 'Digestive Care',
-    description: 'Natural solution for digestive system balance',
+    shortDescription: 'Natural solution for digestive balance.',
+    description: `
+      <h2>Digestive Health Syrup</h2>
+      <p>Our <strong>Digestive Health Syrup</strong> is a natural solution designed to promote digestive balance and overall gut health.</p>
+      <h3>Key Benefits:</h3>
+      <ul>
+        <li>Supports healthy digestion</li>
+        <li>Helps relieve bloating and discomfort</li>
+        <li>Made from natural ingredients</li>
+        <li>Tasty syrup for easy consumption</li>
+      </ul>
+      <h3>How to Use:</h3>
+      <p>Take <strong>15 ml</strong> before meals for best results.</p>
+      <h3>Ingredients:</h3>
+      <p>Natural herbal extracts, honey, and essential oils.</p>
+      <h3>Note:</h3>
+      <p>Consult your healthcare provider if you have any underlying health conditions.</p>
+    `,
     price: 15.99,
     rating: 4.0,
-    mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg'
+    mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg',
+    images: [
+      'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+      'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+    ]
   },
   {
     id: 4,
     name: 'Digestive Health Syrup',
     type: 'Syrup',
     category: 'Digestive Care',
-    description: 'Natural solution for digestive system balance',
+    shortDescription: 'Natural solution for digestive balance.',
+    description: `
+      <h2>Digestive Health Syrup</h2>
+      <p>Our <strong>Digestive Health Syrup</strong> is a natural solution designed to promote digestive balance and overall gut health.</p>
+      <h3>Key Benefits:</h3>
+      <ul>
+        <li>Supports healthy digestion</li>
+        <li>Helps relieve bloating and discomfort</li>
+        <li>Made from natural ingredients</li>
+        <li>Tasty syrup for easy consumption</li>
+      </ul>
+      <h3>How to Use:</h3>
+      <p>Take <strong>15 ml</strong> before meals for best results.</p>
+      <h3>Ingredients:</h3>
+      <p>Natural herbal extracts, honey, and essential oils.</p>
+      <h3>Note:</h3>
+      <p>Consult your healthcare provider if you have any underlying health conditions.</p>
+    `,
     price: 15.99,
     rating: 4.0,
-    mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg'
+    mainImage: 'https://www.thesoumiscanproduct.com/uploads/products/thumb_47.jpeg',
+    images: [
+      'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+      'https://squaretoiletries.com/wp-content/uploads/2022/12/meril-Tangerine-shampoo-pack.png',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg',
+      'https://www.thesoumiscanproduct.com/uploads/products/thumb_20.jpg'
+      
+    ]
   },
 ];
 
 const ProductCard = React.forwardRef(({ product, onAddToCart }, ref) => {
   const [addedToCart, setAddedToCart] = useState(false);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
     onAddToCart(product);
@@ -61,8 +161,18 @@ const ProductCard = React.forwardRef(({ product, onAddToCart }, ref) => {
     setTimeout(() => setAddedToCart(false), 2000);
   };
 
+  const handleProductClick = () => {
+    navigate('/product-details', { state: { product } });
+  };
+
+  // Set a character limit for the description
+  const descriptionLimit = 100; // Change this value as needed
+  const truncatedDescription = product.shortDescription && product.shortDescription.length > descriptionLimit
+    ? `${product.shortDescription.substring(0, descriptionLimit)}...`
+    : product.shortDescription;
+
   return (
-    <div className="product-card" ref={ref}>
+    <div className="product-card" ref={ref} onClick={handleProductClick}>
       <div className="product-image-container">
         <img src={product.mainImage} alt={product.name} className="product-image" />
       </div>
@@ -87,7 +197,15 @@ const ProductCard = React.forwardRef(({ product, onAddToCart }, ref) => {
             </span>
           </div>
         </div>
-        <p className="product-description">{product.description}</p>
+        <p className="product-description">
+          {isDescriptionExpanded ? product.shortDescription : truncatedDescription}
+          {product.shortDescription && product.shortDescription.length > descriptionLimit && !isDescriptionExpanded && (
+            <span className="read-more" onClick={() => setIsDescriptionExpanded(true)}> Read more</span>
+          )}
+          {isDescriptionExpanded && (
+            <span className="read-less" onClick={() => setIsDescriptionExpanded(false)}> Read less</span>
+          )}
+        </p>
       </div>
       <button className="add-to-cart-btn" onClick={handleAddToCart}>
         {addedToCart ? (

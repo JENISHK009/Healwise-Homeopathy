@@ -26,6 +26,16 @@
   --mobile-spacing-large: 15px;
 }
 
+.read-more, .read-less {
+  color: #2c5282; /* Primary color */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.read-more:hover, .read-less:hover {
+  color: #1a365d; /* Darker shade on hover */
+}
+
 .product-page-wrapper {
   font-family: var(--font-family-meta);
   background-color: var(--background-color);

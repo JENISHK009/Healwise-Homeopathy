@@ -26,7 +26,7 @@ const CartPage = ({ cartItems, removeFromCart, updateQuantity }) => {
           <div className="empty-cart">
             <ShoppingCart size={50} />
             <p>Your cart is empty.</p>
-            <a href="/product" className="back-to-shop">
+            <a href="/products" className="back-to-shop">
               <span>Back to Shop</span>
             </a>
           </div>
@@ -78,7 +78,7 @@ const CartPage = ({ cartItems, removeFromCart, updateQuantity }) => {
               <button className="checkout-btn" onClick={handleCheckout}>
                 Proceed to Checkout
               </button>              
-              <a href="/product" className="back-to-shop">
+              <a href="/products" className="back-to-shop">
                 <span>Continue Shopping</span>
               </a>
             </div>

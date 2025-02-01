@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPhone, faEnvelope, faMapMarkerAlt, faCreditCard, faWallet, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
 import './CheckoutPage.css';
 
 const CheckoutPage = () => {
@@ -67,7 +66,6 @@ const CheckoutPage = () => {
 
   return (
     <div className="checkout-page">
-      <Header />
       <div className="checkout-container">
         <h2>Checkout</h2>
         <form onSubmit={handleSubmit}>
@@ -241,7 +239,6 @@ const CheckoutPage = () => {
           </button>
         </form>
       </div>
-      <Footer />
     </div>
   );
 };
