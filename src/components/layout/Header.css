@@ -13,20 +13,27 @@
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Base Styles */
 .header {
-  position: fixed;
+  position: relative;
   top: 0;
-  left: 0;
   width: 100%;
   height: var(--header-height);
   background: var(--nav-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 1000;
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-speed) ease;
+  transition: all 0.6s ease-in-out; /* Smooth slow transition */
+  box-shadow: none; /* No shadow initially */
 }
+
+/* Sticky effect when scrolling */
+.header.sticky {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.9); /* Slight transparency for smooth effect */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
 
 .header-container {
   max-width: 1400px;
