@@ -1,346 +1,244 @@
+/* Root Variables */
 :root {
   --primary-btn: #28a745;
   --primary-btn-hover: #1f8364;
   --secondary-btn: #134f6c;
   --secondary-btn-hover: #0d3549;
   --text-color: #333333;
-  --background-color: #d8d8d8;
   --white: #ffffff;
   --transition-speed: 0.4s;
-  --header-height: 80px; /* Adjust based on your design */
+  --header-height: 80px;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@500;700&display=swap");
-
+/* Header Base Styles */
 .header {
-  display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
-  transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-  font-family: "Poppins", sans-serif;
-  padding: 0.75rem 2rem;
-  background-color: white; /* Transparent background initially */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: var(--header-height);
-  min-height: 70px; /* Minimum height of the header */
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-speed) ease;
 }
 
 .header-container {
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: auto;
-  width: 100%;
-  padding: 0 20px; /* Add padding for better spacing */
 }
 
-.menu {
-  display: flex; /* Show menu by default on larger screens */
+/* Menu Button Styles */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--text-color);
+  transition: all var(--transition-speed) ease;
+  order: 1; /* Ensure menu button appears first */
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+}
+
+/* Logo Styles */
+.logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  order: 2; /* Logo in the middle */
 }
 
 .logo img {
-  max-height: 50px; /* Adjusted logo size */
-  transition: max-height 0.3s ease-in-out;
+  height: calc(var(--header-height) - 30px);
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-speed) ease;
+}
+
+/* Navigation Menu */
+.menu {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  order: 3; /* Menu after logo */
 }
 
 .menu ul {
   display: flex;
+  gap: 2rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.menu ul li {
-  margin: 0 1.5rem;
-  position: relative;
-}
-
-.menu ul li a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-size: 1rem;
-  font-weight: 400;
-  transition: color var(--transition-speed) ease, transform var(--transition-speed) ease, border-bottom var(--transition-speed) ease;
-  padding-bottom: 2px; /* Add space for underline */
-  border-bottom: 2px solid transparent; /* Invisible underline initially */
-}
-
-.menu ul li a:hover {
-  color: var(--text-color); /* Keep original color on hover */
-  transform: none; /* No scaling effect */
-  border-bottom: 2px solid var(--primary-btn); /* Add subtle underline on hover */
-}
-
-.menu ul li a:active {
-  color: var(--text-color); /* Keep the text color unchanged */
-  transform: none; /* No scaling effect */
-  outline: none; /* Remove default active outline */
-}
-
-.menu ul li a:focus {
-  outline: none; /* Remove focus outline */
-  border-bottom: none; /* Remove underline when focused */
-}
-
-.menu ul li a:focus-visible {
-  border-bottom: 2px solid var(--primary-btn); /* Optional focus style for keyboard navigation */
-  background-color: rgba(0, 0, 0, 0.1); /* Optional subtle background change */
-}
-
-/* Ensuring no background color or border effects persist */
-.menu ul li a:focus:not(:focus-visible),
-.menu ul li a:active {
-  outline: none;
-  border-bottom: none;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* Ensure it aligns to the right */
-}
-
+/* Cart Icon Styles */
 .cart-icon-container {
   position: relative;
   cursor: pointer;
-  display: flex;
-  margin-left: 20px; /* Space between cart and menu icon */
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all var(--transition-speed) ease;
+  order: 4; /* Ensure cart always appears last */
 }
-
-.cart-icon-container svg {
-  width: 24px;
-  height: 24px;
-  color: var(--text-color);
-}
-
 
 .cart-count {
   position: absolute;
-  top: -8px; /* Position the count above the icon */
-  right: -10px; /* Position the count above the icon */
-  background-color: var(--primary-btn);
+  top: -5px;
+  right: -5px;
+  background: var(--primary-btn);
   color: var(--white);
-  border-radius: 50%;
-  padding: 2px 6px;
-  font-size: 10px; /* Smaller font size for the count */
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.menu-btn {
-  display: none; /* Hide menu button on larger screens */
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .close-btn {
-  background: none; /* No background */
-  border: none; /* No border */
-  cursor: pointer; /* Pointer cursor */
-  color: var(--white); /* Color of the close icon */
-  font-size: 24px; /* Size of the close icon */
-  position: absolute; /* Position it absolutely */
-  top: 20px; /* Adjust as needed */
-  right: 20px; /* Adjust as needed */
-  z-index: 1002; /* Ensure it is above other elements */
-}
-
-.close-icon {
   display: none;
-  color: var(--white); /* Color for the close icon */
 }
 
-/* Responsive design */
-@media (max-width: 1024px) {
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    height: 70px;
+  }
+
   .header-container {
-    padding: 0; /* Removed padding for smaller screens */
+    padding: 0 1rem;
+    justify-content: space-between;
+  }
+
+  /* Show menu button on mobile */
+  .menu-btn {
+    display: flex;
+    order: 1;
+    margin-right: auto; /* Push to the left */
+  }
+
+  /* Center logo */
+  .logo {
+    order: 2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .logo img {
-    max-height: 50px; /* Smaller logo size for mid-size screens */
+    height: calc(70px - 20px);
   }
 
-  .menu {
-    display: none; /* Hide menu by default */
-    position: fixed; /* Position it fixed */
-    top: 0; /* Align to the top */
-    right: -280px; /* Start off-screen to the right */
-    width: 280px; /* Width of the menu */
-    height: 100vh; /* Full height */
-    background-color: var(--secondary-btn); /* Background color */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow for the menu */
-    transition: right var(--transition-speed) ease; /* Smooth transition for sliding in */
-    z-index: 1001; /* Ensure it is above other elements */
-  }
-  
-  .menu.open {
-    display: flex; /* Show menu when open */
-    left: 0; /* Slide in from the right */
-    flex-direction: column; /* Stack items vertically */
-    justify-content: flex-start; /* Align items to the top */
-    align-items: center; /* Center items horizontally */
-  }
-
-  .menu-btn {
-    display: flex; /* Show menu button on small screens */
-    background: none; /* Remove default button background */
-    border: none; /* Remove border */
-    cursor: pointer; /* Change cursor to pointer */
-  }
-
-  .header-actions {
-    display: flex; /* Ensure actions are displayed */
-    margin-left: auto; /* Align to the right */
-  }
-
+  /* Keep cart at the end */
   .cart-icon-container {
-    margin-right: 10px; /* Ensure space between cart icon and menu button */
+    order: 3;
+    margin-left: auto; /* Push to the right */
   }
 
-
+  /* Mobile menu styling */
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--nav-bg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    transition: left var(--transition-speed) ease;
+    z-index: 1001;
+  }
 
   .menu.open {
-    display: flex; /* Show menu when open */
+    left: 0;
   }
 
   .menu ul {
-    flex-direction: column; /* Stack menu items vertically */
-    padding: 1rem; /* Add padding around menu */
-    width: 100%; /* Full width for menu */
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 4rem;
   }
 
-  .menu ul li {
-    margin: 1rem 0; /* Space between menu items */
-    width: 100%; /* Full width for menu items */
-  }
-
-  .menu ul li a {
-    text-decoration: none;
-    color: var(--white); /* Text color for menu items */
-    font-size: 1rem; /* Smaller font size for menu items */
-    font-weight: 600;
-    transition: color var(--transition-speed) ease;
-    width: 100%; /* Full width for clickable area */
-    text-align: center; /* Center text */
-    padding: 10px 0; /* Add padding for better touch targets */
-    border-radius: 4px; /* Rounded corners for menu items */
-  }
-  .menu ul li a:hover {
-    background-color: var(--primary-btn-hover); /* Change background on hover */
-    color: var(--white); /* Keep text color on hover */
-  }
-
-  .menu ul li a:active {
-    color: var(--primary-btn); /* Keep color on active */
-  }
-
-  .close-icon {
+  .menu li a {
     display: block;
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
   }
-}
 
-@media (max-width: 768px) {
   .close-btn {
-    display: block;
+  display: flex;
+
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
     background: none;
     border: none;
+    font-size: 1.5rem;
     cursor: pointer;
     color: var(--text-color);
-    font-size: 24px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 0.8rem;
+  }
+
+  .logo img {
+    height: calc(70px - 25px);
   }
 
   .menu {
-    display: none; /* Hide menu by default on smaller screens */
-    position: fixed; /* Position it fixed */
-    top: 0; /* Align to the top */
-    right: -280px; /* Start off-screen to the right */
-    width: 280px; /* Width of the menu */
-    height: 100vh; /* Full height */
-    background-color: var(--secondary-btn); /* Background color */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow for the menu */
-    transition: right var(--transition-speed) ease; /* Smooth transition for sliding in */
-  }
-
-  .menu.open {
-    display: flex; /* Show menu when open */
-    right: 0; /* Slide in from the right */
-    flex-direction: column; /* Stack items vertically */
-    justify-content: flex-start; /* Align items to the top */
-    align-items: center; /* Center items horizontally */
-  }
-  
-  .header-container {
-    flex-direction: row; /* Change to row for mobile layout */
-    justify-content: space-between; /* Space items evenly */
-    padding: 0; /* Removed padding for smaller screens */
-  }
-
-  .logo {
-    order: 1; /* Logo first */
+    width: 85%;
   }
 
   .cart-icon-container {
-    order: 2; /* Cart icon second */
-    display: flex; /* Show cart icon */
-    margin-left: auto; /* Align to the right */
+    padding: 0.4rem;
   }
 
-  .menu-btn {
-    display: flex; /* Show menu button on small screens */
-    background: none; /* Remove default button background */
-    border: none; /* Remove border */
-    cursor: pointer; /* Change cursor to pointer */
-  }
-
-  .menu ul {
-    flex-direction: column; /* Stack menu items vertically */
-    padding: 1rem; /* Add padding around menu */
-    width: 100%; /* Full width for menu */
-  }
-
-  .menu ul li {
-    margin: 1rem 0; /* Space between menu items */
-    width: 100%; /* Full width for menu items */
-  }
-
-  .menu ul li a {
-    color: var(--white);
-    text-align: center; /* Center text */
-    padding: 10px 0; /* Add padding for better touch targets */
-    border-radius: 4px; /* Rounded corners for menu items */
-    transition: background-color var(--transition-speed) ease; /* Smooth background transition */
-  }
-
-  .menu ul li a:hover {
-    background-color: var(--primary-btn-hover); /* Change background on hover */
-    color: var(--white); /* Keep text color on hover */
-  }
-
-  .close-icon {
-    display: block;
+  .cart-count {
+    min-width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
   }
 }
 
-/* Show cart icon only on small mobile screens */
-@media (max-width: 480px) {
-  .cart-icon-container {
-    display: flex; /* Show cart icon */
-    margin-left: 0.5rem; /* Reduce space for cart icon */
+/* Animation for mobile menu */
+@keyframes slideIn {
+  from {
+    left: -100%;
   }
-
-  .menu-btn {
-    display: flex; /* Show menu button on small screens */
+  to {
+    left: 0;
   }
 }
 
-/* Adjust body padding for the header */
-body {
-  padding-top: var(--header-height);
+.menu.open {
+  animation: slideIn var(--transition-speed) ease forwards;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

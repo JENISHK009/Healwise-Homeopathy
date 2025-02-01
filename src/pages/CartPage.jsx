@@ -77,10 +77,10 @@ const CartPage = ({ cartItems, removeFromCart, updateQuantity }) => {
               </div>
               <button className="checkout-btn" onClick={handleCheckout}>
                 Proceed to Checkout
-              </button>              
-              <a href="/products" className="back-to-shop">
-                <span>Continue Shopping</span>
-              </a>
+              </button>
+              <button className="continue-shopping-btn" onClick={() => navigate('/products')}>
+                Continue Shopping
+              </button>
             </div>
           </div>
         )}

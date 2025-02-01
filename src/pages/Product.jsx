@@ -172,11 +172,11 @@ const ProductCard = React.forwardRef(({ product, onAddToCart }, ref) => {
     : product.shortDescription;
 
   return (
-    <div className="product-card" ref={ref} onClick={handleProductClick}>
-      <div className="product-image-container">
+    <div className="product-card">
+      <div className="product-image-container" ref={ref} onClick={handleProductClick}>
         <img src={product.mainImage} alt={product.name} className="product-image" />
       </div>
-      <div className="product-details">
+      <div className="product-details" ref={ref} onClick={handleProductClick}>
         <h3 className="product-name">
           {product.name}
           <span className="rating-number">

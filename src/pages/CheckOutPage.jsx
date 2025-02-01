@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPhone, faEnvelope, faMapMarkerAlt, faCreditCard, faWallet, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
-import Header from "../components/layout/Header";
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './CheckoutPage.css';
 
 const CheckoutPage = () => {
@@ -54,6 +54,8 @@ const CheckoutPage = () => {
     return Object.keys(newErrors).length === 0; // Return true if no errors
   };
 
+  
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,6 +70,9 @@ const CheckoutPage = () => {
     <div className="checkout-page">
       <div className="checkout-container">
         <h2>Checkout</h2>
+        <button className="back-button" onClick={() => navigate('/cart')}>
+          <FontAwesomeIcon icon={faArrowLeft} className="back-icon" />
+        </button>
         <form onSubmit={handleSubmit}>
           {/* Personal Details */}
           <div className="form-section">
