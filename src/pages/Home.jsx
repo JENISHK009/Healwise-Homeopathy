@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Header from "../components/layout/Header";
+import React from "react";
 import Banner from "../components/layout/Banner";
-import Footer from "../components/layout/Footer";
 
 const HomePage = () => {
   return (

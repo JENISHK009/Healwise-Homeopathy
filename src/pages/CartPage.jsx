@@ -1,7 +1,6 @@
 import React from 'react';
 import { ShoppingCart, X } from 'lucide-react';
 import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
 import './CartPage.css';
 import { useNavigate } from "react-router-dom";
 

@@ -7,7 +7,6 @@ import {
   ShoppingCart,
   X,
 } from 'lucide-react';
-import Footer from "../components/layout/Footer";
 import './ProductPage.css';
 
 const products = [
